@@ -60,7 +60,7 @@ function App() {
     <div className="App">
       <div className="m-container">
         <div className="App-header">
-          <h2>Поиск фильмов и сериалов</h2>
+          <h2>Search for movies and serials</h2>
         </div>
 
         <Search search={search} />
