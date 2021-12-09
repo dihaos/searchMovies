@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import InfoAboutMovie from "./InfoAboutMovie";
 
 const Movie = ({ movie }) => {
+  const [show, setShow] = useState(false)
+
+  const openAndCloseMovie = (bool) => {
+    setShow(bool)
+    if (bool) {
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.position = 'fixed';
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  }
+
   return (
-    <div className="movie">
-      <h2>{movie.Title}</h2>
+    <>
+      {show &&
+        <>
+          <InfoAboutMovie movie={movie} show={show} closeMovie={openAndCloseMovie} />
+          <div className='shadowWindow' />
+        </>
+      }
+      <div onClick={() => openAndCloseMovie(true)} className="movie">
+        <h3>{movie.Title}</h3>
         {movie.Poster === "N/A" ?
           'Нет изображения'
           : < img
@@ -11,8 +34,9 @@ const Movie = ({ movie }) => {
             alt={`The movie titled: ${movie.Title}`}
             src={movie.Poster}
           />}
-      <p>Год: {movie.Year}</p>
-    </div>
+        <p>Year: {movie.Year}</p>
+      </div>
+    </>
   );
 };
 
