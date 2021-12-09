@@ -20,24 +20,18 @@ function App() {
   }, []);
 
   const search = searchValue => {
-    dispatch({
-      type: "SEARCH_MOVIES_REQUEST"
-    });
     requestMovies.getFoundMovies(searchValue).then(res => {
-      if (res.data.Response === "True") {
+      res.data.Response === "True" ?
         dispatch({
           type: "SEARCH_MOVIES_SUCCESS",
           payload: res.data.Search
-        });
-      } else {
-        dispatch({
+        })
+        : dispatch({
           type: "SEARCH_MOVIES_FAILURE",
-          error: 'Ничего не найдено'
+          error: res.data.Error
         });
-      }
-    }
-    );
-  };
+    });
+  }
 
   const retrievedMovies =
     loading && !errorMessage ?
