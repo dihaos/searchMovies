@@ -1,35 +1,28 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Movie from "./components/Movie";
 import spinner from "./assets/ajax-loader.gif";
 import Search from "./components/Search";
-import { initialState, reducer } from "./store/reducer";
 import './App.css'
 import requestMovies from "./request";
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { movies, errorMessage, loading } = state;
+  const [movies, setMovies] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     requestMovies.getFoundMovies('batman').then(res => {
-      dispatch({
-        type: "SEARCH_MOVIES_SUCCESS",
-        payload: res.data.Search
-      });
+      setMovies(res.data.Search)
+      setLoading(false)
     })
   }, []);
 
   const search = searchValue => {
     requestMovies.getFoundMovies(searchValue).then(res => {
-      res.data.Response === "True" ?
-        dispatch({
-          type: "SEARCH_MOVIES_SUCCESS",
-          payload: res.data.Search
-        })
-        : dispatch({
-          type: "SEARCH_MOVIES_FAILURE",
-          error: res.data.Error
-        });
+      if (res.data.Response === "True") {
+        setMovies(res.data.Search)
+        setErrorMessage('')
+      } else setErrorMessage(res.data.Error)
     });
   }
 
