@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Movie from "./components/Movie";
-import spinner from "./assets/ajax-loader.gif";
+import spinner from "./style/loader.gif";
 import Search from "./components/Search";
-import './App.css'
+import './style/App.css'
 import requestMovies from "./request";
 
 function App() {

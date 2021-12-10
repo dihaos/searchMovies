@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import requestMovies from '../request'
-import spinner from "../assets/ajax-loader.gif";
+import spinner from "../style/loader.gif";
 
 const InfoAboutMovie = (props) => {
     const [info, setInfo] = useState({})
