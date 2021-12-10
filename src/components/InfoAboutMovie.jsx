@@ -29,7 +29,9 @@ const InfoAboutMovie = (props) => {
             {loading ?
                 <img className="spinner" src={spinner} alt="Loading spinner" />
                 : <>
-                    <img className='imgPoster' src={info.Poster} alt={info.Title} />
+                    {info.Poster === 'N/A' ? ''
+                        : <img className='imgPoster' src={info.Poster} alt={info.Title} />
+                    }
                     <div>
                         <h2 style={{ textAlign: 'center' }}>{props.movie.Title}</h2>
                         {Object.keys(info).map(el => (
