@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import requestMovies from '../request'
+import spinner from "../assets/ajax-loader.gif";
 
 const InfoAboutMovie = (props) => {
     const [info, setInfo] = useState({})
@@ -7,30 +8,41 @@ const InfoAboutMovie = (props) => {
 
     useEffect(() => {
         requestMovies.getMovie(props.movie.Title, props.movie.Year).then(res => {
-            setInfo(res.data)
+            setInfo({
+                Poster: res.data.Poster,
+                Released: res.data.Released,
+                Runtime: res.data.Runtime,
+                Genre: res.data.Genre,
+                Writer: res.data.Writer,
+                Actors: res.data.Actors,
+                Plot: res.data.Plot,
+                Awards: res.data.Awards,
+                'Box Office': res.data.BoxOffice,
+                Country: res.data.Country,
+            })
             setLoading(false)
         })
-
-
     }, [])
-    console.log(info)
+
     return (
         <div className='infoAboutMovie'>
             {loading ?
-                ''
+                <img className="spinner" src={spinner} alt="Loading spinner" />
                 : <>
-                    {/* <button onClick={() => props.closeMovie(false)}>закрыть</button> */}
                     <img className='imgPoster' src={info.Poster} alt={info.Title} />
-                    {/* <div> */}
-                        <ul>
-                            {Object.keys(info).map(el => (
-                                <li style={{'white-space': 'pre-wrap'}}>{`${el}:${info[el]}`}</li>
-                            ))}
-                        </ul>
-                    {/* </div> */}
+                    <div>
+                        <h2 style={{ textAlign: 'center' }}>{props.movie.Title}</h2>
+                        {Object.keys(info).map(el => (
+                            el !== 'Poster' &&
+                            <p style={{ 'white-space': 'pre-wrap', margin: '10px 20px' }}>
+                                {`${el}: ${info[el]}`}
+                            </p>
+                        ))}
+                    </div>
+                    <button className='buttonClose' onClick={() => props.closeMovie(false)}>Х</button>
                 </>
             }
-        </div>
+        </div >
     )
 }
 

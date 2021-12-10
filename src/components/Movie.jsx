@@ -25,12 +25,14 @@ const Movie = ({ movie }) => {
           <div className='shadowWindow' />
         </>
       }
-      <div onClick={() => openAndCloseMovie(true)} className="movie">
+      <div className="movie">
         <h3>{movie.Title}</h3>
         {movie.Poster === "N/A" ?
           'Нет изображения'
           : < img
-            width="200"
+            title='Show information'
+            className='imgMovie'
+            onClick={() => openAndCloseMovie(true)}
             alt={`The movie titled: ${movie.Title}`}
             src={movie.Poster}
           />}

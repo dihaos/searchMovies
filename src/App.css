@@ -1,5 +1,5 @@
 .App-header {
-  background-color: #282c34;
+  background-color: #395284;
   height: 70px;
   display: flex;
   flex-direction: column;
@@ -56,7 +56,7 @@
   margin-top: 10px;
 }
 
-input[type="submit"] {
+#buttonSearch {
   padding: 5px;
   background-color: transparent;
   color: black;
@@ -64,9 +64,10 @@ input[type="submit"] {
   width: 80px;
   margin-left: 5px;
   cursor: pointer;
+  font-weight: bold;
 }
 
-input[type="submit"]:hover {
+#buttonSearch:hover {
   background-color: #282c34;
   color: antiquewhite;
 }
@@ -96,8 +97,9 @@ input[type="submit"]:hover {
 }
 
 .infoAboutMovie{
+  padding: 5px;
   width: 90%;
-  height: 90vh;
+  max-height: 90vh;
   background-color: white;
   position: fixed;
   left: 50%;
@@ -105,6 +107,7 @@ input[type="submit"]:hover {
   transform: translate(-50%,-50%);
   z-index: 1;
   display: flex;
+  border-radius: 10px;
 }
 
 .shadowWindow{
@@ -119,6 +122,26 @@ input[type="submit"]:hover {
 }
 
 .imgPoster{
-  height: 80%;
-  padding: 5px;
+  border-radius: 10px;
+  height: max-content;
+}
+
+.buttonClose{
+  width: 40px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  right: 5px;
+  position: fixed;
+  cursor: pointer;
+}
+
+.imgMovie{
+  cursor: pointer;
+  width: 200px
+}
+
+.imgMovie:hover{
+  opacity: 0.8;
 }

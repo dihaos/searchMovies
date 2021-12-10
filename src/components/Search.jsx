@@ -19,7 +19,7 @@ const Search = ({ search }) => {
         onChange={handleSearchInputChanges}
         type="text"
       />
-      <input disabled={!searchValue} type="submit" value="Search" />
+      <button id='buttonSearch' disabled={!searchValue} type="submit">Search</button>
     </form>
   );
 };
