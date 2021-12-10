@@ -40,6 +40,7 @@
   padding: 5px 25px 10px 25px;
   max-width: 25%;
   text-align: center;
+  cursor: pointer;
 }
 
 .errorMessage {
@@ -138,10 +139,9 @@
 }
 
 .imgMovie{
-  cursor: pointer;
   width: 200px
 }
 
-.imgMovie:hover{
+.movie:hover{
   opacity: 0.8;
 }
